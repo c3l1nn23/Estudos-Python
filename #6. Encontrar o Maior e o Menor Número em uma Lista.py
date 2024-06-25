@@ -3,6 +3,8 @@
 numero = []
 
 numero = input("Digite a lista de numero separados por espaço : ") .split()
+numero = [float(num) for num in numero]
+
 num_max = max(numero)
 num_min = min(numero)
 
