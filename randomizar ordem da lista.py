@@ -1,3 +1,4 @@
+#SelinZ
 import random
 contador = 1
 alunos = []  # Inicializa a lista para armazenar os nomes
