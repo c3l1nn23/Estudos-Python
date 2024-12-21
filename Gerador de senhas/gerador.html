@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senha</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f3f4f6;
+      }
+      .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      input, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #senha {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 18px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Gerador de Senha</h2>
+      <input id="palavras" type="text" placeholder="Digite as palavras">
+      <input id="tamanho" type="number" placeholder="Digite o tamanho da senha (mínimo 12)">
+      <button id="gerarSenha">Gerar Senha</button>
+      <div id="senha">Sua senha será exibida aqui</div>
+    </div>
+
+    <script>
+      function gerarCaracteresExtras(tamanho) {
+        const caracteresEspeciais = "!@#$%^&*";
+        return Array.from({ length: tamanho }, () => caracteresEspeciais.charAt(Math.floor(Math.random() * caracteresEspeciais.length))).join('');
+      }
+
+      function substituirVogais(palavra) {
+        const mapaVogais = {'a': '4', 'e': '3', 'i': '1', 'o': '0', 'u': '@'};
+        for (const [vogal, numero] of Object.entries(mapaVogais)) {
+          palavra = palavra.replace(new RegExp(vogal, 'g'), numero);
+          palavra = palavra.replace(new RegExp(vogal.toUpperCase(), 'g'), numero);
+        }
+        return palavra;
+      }
+
+      function substituirNumerosPorCaracteres(palavra) {
+        const mapaNumeros = {'1': '!', '2': '@', '3': '#', '4': '$', '5': '%'};
+        for (const [numero, caractere] of Object.entries(mapaNumeros)) {
+          palavra = palavra.replace(new RegExp(numero, 'g'), caractere);
+        }
+        return palavra;
+      }
+
+      function letrasMaiusculas(palavra) {
+        if (palavra === palavra.toLowerCase()) {
+          palavra = palavra.charAt(0).toUpperCase() + palavra.slice(1);
+        }
+        return palavra;
+      }
+
+      function cÇ(palavra) {
+        return palavra.replace(/c/g, 'ç');
+      }
+
+      function gerarSenhaSegura(tamanho, palavras) {
+        if (tamanho < 12) {
+          throw new Error("O tamanho mínimo recomendado para uma senha segura é 12 caracteres.");
+        }
+
+        let senhaBase = palavras.join('');
+        senhaBase = senhaBase.substring(0, tamanho);
+
+        let senha = substituirVogais(senhaBase);
+        senha = substituirNumerosPorCaracteres(senha);
+        senha = cÇ(senha);
+
+        if (!senha.includes('c')) {
+          senha += 'Ç';
+        }
+
+        if (senha.length < tamanho) {
+          senha += gerarCaracteresExtras(tamanho - senha.length);
+        }
+
+        senha = letrasMaiusculas(senha);
+        senha = senha.replace(/ç/g, 'Ç');
+
+        return senha;
+      }
+
+      document.getElementById('gerarSenha').addEventListener('click', function() {
+        const palavras = document.getElementById('palavras').value.split(' ');
+        const tamanho = parseInt(document.getElementById('tamanho').value, 10);
+
+        try {
+          const senhaGerada = gerarSenhaSegura(tamanho, palavras);
+          document.getElementById('senha').textContent = `Sua senha é: ${senhaGerada}`;
+        } catch (e) {
+          document.getElementById('senha').textContent = e.message;
+        }
+      });
+    </script>
+  </body>
+</html>
