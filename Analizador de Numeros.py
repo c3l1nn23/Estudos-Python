@@ -1,12 +1,18 @@
 numero = int(input("Digite um numero : "))
 
 
-def converter_numero (numero):
-     binario = bin(numero)[2:]
-     hexadecimal = hex(numero)[2:]
-     octal = oct(numero)[2:]
-     return binario, hexadecimal, octal
+def converter_numero(numero):
+    binario = bin(numero)[2:]
+    hexadecimal = hex(numero)[2:]
+    octal = oct(numero)[2:]
+    return binario, hexadecimal, octal
+numero = int(input("Digite um número inteiro: "))
 binario, hexadecimal, octal = converter_numero(numero)
+
+print(f"Binário: {binario}")
+print(f"Hexadecimal: {hexadecimal}")
+print(f"Octal: {octal}")
+
 def analisar_numero (numero):
     unidade = numero//1 %10
     dezena = numero//10 %10
