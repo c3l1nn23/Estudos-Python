@@ -139,7 +139,7 @@ while True:
     elif escolha == 4:
         numero = int(input("Digite um número inteiro: "))
         fatorar_numero(numero)
-        print(f"O fatorial de {numero} é {fator}")
+        print(f"O fatorial de {numero} é {fatorar_numero(numero)}")
         input("Pressione Enter para voltar ao menu...")
     elif escolha == 5:
         numero_perfeito()
