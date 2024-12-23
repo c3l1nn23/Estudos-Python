@@ -1,4 +1,4 @@
-valor_casa = float(input("Digite o valor da casa: R$ "))
+valor_casa = float(input("Digite o valor do item: R$ "))
 salario = float(input("Digite o salário do comprador: R$ "))
 anos = int(input("Em quantos anos deseja pagar? "))
 

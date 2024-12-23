@@ -53,9 +53,12 @@ def converter_numero(numero):
     octal = oct(numero)[2:]
     return binario, hexadecimal, octal
 def fatorar_numero(numero):
-    fator = 1
-    for i in range(1, numero + 1):
-        fator = fator * i
+    if numero < 0:
+        return "Não é possível calcular o fatorial de um número negativo."
+    fatorial = 1
+    for c in range(numero, 0, -1):
+        fatorial *= c
+    return fatorial
 def numero_perfeito():
     n = int(input("Digite o numero: "))
     soma = 0
