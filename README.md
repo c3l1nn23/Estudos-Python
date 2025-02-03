@@ -34,7 +34,7 @@ O principal objetivo deste repositório é compartilhar minha jornada de aprendi
 Este é um repositório pessoal de estudos, mas feedbacks são sempre bem-vindos! Caso tenha sugestões ou encontre algo que possa ser melhorado, fique à vontade para abrir uma issue ou entrar em contato.
 
 ## 📬 Contato
-- GitHub: [omoaiye](https://github.com/omoaiye)
+- GitHub: [c3l1nn](https://github.com/c3l1nn)
 - Email: marcelo.dengo@gmail.com
 - Instagram: _omoaye
 
